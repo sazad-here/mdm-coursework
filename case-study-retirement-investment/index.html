@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Case Study – Team 27 (C09_04)</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:Calibri,'Segoe UI',Arial,sans-serif;font-size:12pt;color:#1a1a1a;background:#fff;padding:.85in 1in;max-width:980px;line-height:1.55;margin:0 auto;}
+  .doc-header{text-align:center;margin-bottom:16px;}
+  .doc-header h1{font-size:17pt;font-weight:bold;color:#1F3864;letter-spacing:.4px;}
+  .doc-header .sub{font-size:12.5pt;color:#2E75B6;font-weight:bold;margin:4px 0;}
+  .doc-header .auth{font-size:11pt;color:#555;margin-top:4px;}
+  .rule{border:none;border-top:3px solid #2E75B6;margin:12px 0 20px 0;}
+  .rule2{border:none;border-top:1px solid #ccc;margin:24px 0 10px 0;}
+  h2{font-size:13pt;font-weight:bold;color:#fff;background:#2E75B6;padding:5px 13px;margin:26px 0 10px 0;border-radius:3px;}
+  h3{font-size:12pt;font-weight:bold;color:#1F3864;margin:14px 0 5px 0;}
+  p{margin:7px 0;text-align:justify;}
+  ul{margin:7px 0 10px 28px;}
+  li{margin-bottom:7px;}
+  table{border-collapse:collapse;width:100%;margin:10px 0 14px 0;font-size:10.5pt;}
+  thead th{background:#1F3864;color:#fff;border:1px solid #1F3864;padding:6px 10px;text-align:center;}
+  th.s{background:#2E75B6;color:#fff;border:1px solid #1a5490;padding:5px 10px;text-align:center;}
+  td{border:1px solid #c9d9eb;padding:5px 10px;}
+  tr:nth-child(even) td{background:#EEF4FB;}
+  td:first-child{font-weight:600;color:#1F3864;}
+  .chart-box{background:#fff;border:1px solid #dce6f0;border-radius:10px;padding:12px 14px;margin:18px 0 6px 0;box-shadow:0 6px 18px rgba(12,34,62,.08);}
+  .chart-box canvas{display:block;margin:0 auto;max-width:100%;}
+  .interp{background:#F0F5FF;border-left:4px solid #2E75B6;padding:9px 14px;margin:6px 0 22px 0;font-size:11.5pt;line-height:1.5;}
+  .interp strong{color:#1F3864;}
+  .footer{text-align:center;font-size:10pt;color:#888;margin-top:28px;padding-top:10px;border-top:1px solid #ccc;}
+  .toc{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 6px 0;padding:10px 12px;border:1px solid #dce6f0;border-radius:10px;background:#F8FAFF;}
+  .toc a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:#1F3864;font-weight:700;background:#fff;border:1px solid #dce6f0;border-radius:999px;padding:6px 10px;transition:transform .12s ease, box-shadow .12s ease;}
+  .toc a:hover{transform:translateY(-1px);box-shadow:0 8px 16px rgba(12,34,62,.10);}
+  .toc .dot{width:8px;height:8px;border-radius:50%;background:#2E75B6;display:inline-block;}
+  .tabs{display:flex;gap:8px;align-items:center;margin:10px 0 8px 0;}
+  .tab-btn{appearance:none;border:1px solid #dce6f0;background:#fff;border-radius:999px;padding:6px 12px;font-weight:800;color:#1F3864;cursor:pointer;transition:background .12s ease, transform .12s ease, box-shadow .12s ease;}
+  .tab-btn:hover{transform:translateY(-1px);box-shadow:0 8px 16px rgba(12,34,62,.10);}
+  .tab-btn.active{background:#2E75B6;color:#fff;border-color:#2E75B6;}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+  .chart-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:4px 2px 10px 2px;}
+  .chart-title{font-weight:900;color:#1F3864;font-size:11.5pt;}
+  .chart-actions{display:flex;gap:8px;align-items:center;}
+  .btn{appearance:none;border:1px solid #dce6f0;background:#fff;border-radius:9px;padding:6px 10px;font-weight:800;color:#1F3864;cursor:pointer;transition:transform .12s ease, box-shadow .12s ease, background .12s ease;}
+  .btn:hover{transform:translateY(-1px);box-shadow:0 8px 16px rgba(12,34,62,.10);}
+  .btn.small{padding:5px 9px;font-size:10.5pt;}
+  .btn.ghost{background:transparent;}
+  .chart-controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:10px 0 8px 0;padding:10px 12px;border:1px solid #dce6f0;border-radius:10px;background:#F8FAFF;}
+  .toggle{display:inline-flex;align-items:center;gap:8px;font-weight:800;color:#1F3864;}
+  .hint{color:#555;font-size:10.8pt;}
+  .tooltip{position:fixed;z-index:9999;pointer-events:none;min-width:160px;max-width:280px;background:rgba(17,24,39,.95);color:#fff;border:1px solid rgba(255,255,255,.10);border-radius:10px;padding:10px 12px;box-shadow:0 18px 30px rgba(0,0,0,.25);font-size:10.5pt;line-height:1.35;}
+  .backtop{position:fixed;right:18px;bottom:18px;z-index:9998;}
+  .backtop button{appearance:none;border:none;background:#1F3864;color:#fff;border-radius:999px;padding:10px 12px;font-weight:900;cursor:pointer;box-shadow:0 14px 28px rgba(12,34,62,.25);transition:transform .12s ease;}
+  .backtop button:hover{transform:translateY(-2px);}
+</style>
+</head>
+<body>
+
+<div class="doc-header">
+  <h1>Managerial Decision Making</h1>
+  <p class="sub">Case Study – Team 27 &nbsp;|&nbsp; Dataset C09_04</p>
+  <p class="auth">Shakila Azad &nbsp;·&nbsp; Aashka Bhagat &nbsp;·&nbsp; Javari Simmons</p>
+</div>
+<hr class="rule">
+
+<!-- ==================== SECTION 1 ==================== -->
+<nav class="toc">
+  <a href="#summary"><span class="dot"></span>Summary</a>
+  <a href="#regression"><span class="dot"></span>Regression</a>
+  <a href="#fit"><span class="dot"></span>Model Fit</a>
+  <a href="#corr"><span class="dot"></span>Correlation</a>
+  <a href="#plots"><span class="dot"></span>Scatterplots</a>
+  <a href="#conclusion"><span class="dot"></span>Conclusion</a>
+</nav>
+
+<h2 id="summary">1. Case Summary</h2>
+<p>This analysis examines the financial and demographic factors that influence how much an individual invests in tax-deferred retirement plans. Using dataset C09_04 with <strong>194 observations</strong>, we investigate four independent variables: <strong>number of children</strong> in the household, <strong>annual salary</strong> (in thousands), <strong>mortgage balance</strong> (in thousands), and <strong>total other debt</strong> (in thousands). The dependent variable is the <strong>percentage of income invested</strong> in a tax-deferred retirement plan.</p>
+<p>The dataset also includes a column labeled "Couple," which is a sequential observation index numbered 1 through 194. It is not a predictor variable and was excluded from all regression analyses. The four actual independent variables under investigation are Children, Salary (k), Mortgage (k), and Debt (k).</p>
+
+<!-- ==================== SECTION 2 ==================== -->
+<h2 id="regression">2. Regression Analysis</h2>
+<p>We began with an initial regression including all four independent variables. After examining p-values, <strong>Children</strong> (p&nbsp;=&nbsp;0.954) was found to be statistically insignificant at α&nbsp;=&nbsp;0.05 and was removed. A refined second regression was run using the three remaining significant predictors: Salary (k), Mortgage (k), and Debt (k).</p>
+
+<div class="tabs" data-tabs="reg">
+  <button class="tab-btn" data-target="reg-initial">Initial model</button>
+  <button class="tab-btn active" data-target="reg-final">Final model</button>
+</div>
+
+<div id="reg-initial" class="tab-panel">
+<h3>Initial Regression – All Four Independent Variables</h3>
+<table>
+  <thead>
+    <tr><th colspan="6">Summary Output – First Run &nbsp;|&nbsp; n=194 &nbsp;|&nbsp; R²=0.4531 &nbsp;|&nbsp; SE=0.03375</th></tr>
+    <tr><th class="s">Variable</th><th class="s">Coefficient</th><th class="s">Std. Error</th><th class="s">t Stat</th><th class="s">P-value</th><th class="s">Decision</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Intercept</td>   <td>0.06115</td>   <td>0.01052</td>  <td>5.812</td>  <td>2.59E−08</td><td>—</td></tr>
+    <tr><td>Children</td>    <td>−0.000188</td> <td>0.003264</td> <td>−0.058</td> <td>0.9540</td>  <td>Remove (p &gt; 0.05)</td></tr>
+    <tr><td>Salary (k)</td>  <td>0.001165</td>  <td>0.000133</td> <td>8.750</td>  <td>1.18E−15</td><td>Retain</td></tr>
+    <tr><td>Mortgage (k)</td><td>−0.000533</td> <td>0.000109</td> <td>−4.908</td> <td>1.98E−06</td><td>Retain</td></tr>
+    <tr><td>Debt (k)</td>    <td>−0.002999</td> <td>0.000590</td> <td>−5.079</td> <td>9.04E−07</td><td>Retain</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div id="reg-final" class="tab-panel active">
+<h3>Refined Regression – Three Significant Predictors</h3>
+<table>
+  <thead><tr><th colspan="7">Coefficient Table – Final Model &nbsp;|&nbsp; R²=0.4531 &nbsp;|&nbsp; Adj.R²=0.4445 &nbsp;|&nbsp; SE=0.03366 &nbsp;|&nbsp; F=52.469 (p=9.45E−25)</th></tr>
+    <tr><th class="s">Variable</th><th class="s">Coefficient</th><th class="s">Std. Error</th><th class="s">t Stat</th><th class="s">P-value</th><th class="s">Lower 95%</th><th class="s">Upper 95%</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Intercept</td>   <td>0.06083</td>   <td>0.00887</td>  <td>6.858</td>  <td>9.54E−11</td><td>0.04333</td> <td>0.07833</td></tr>
+    <tr><td>Salary (k)</td>  <td>0.001168</td>  <td>0.000117</td> <td>9.971</td>  <td>4.24E−19</td><td>0.000937</td><td>0.001399</td></tr>
+    <tr><td>Mortgage (k)</td><td>−0.000535</td> <td>0.000100</td> <td>−5.335</td> <td>2.70E−07</td><td>−0.000733</td><td>−0.000337</td></tr>
+    <tr><td>Debt (k)</td>    <td>−0.003011</td> <td>0.000551</td> <td>−5.467</td> <td>1.43E−07</td><td>−0.004097</td><td>−0.001925</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Interpretation of Coefficients</h3>
+<p>All effects below are interpreted <strong>holding all other independent variables constant</strong>.</p>
+<ul>
+  <li><strong>Salary (k):</strong> For every additional $1,000 in annual salary, the percentage of income invested increases by approximately <strong>0.117 percentage points</strong>, holding Mortgage and Debt constant. Higher earners consistently allocate a greater share of income to retirement savings.</li>
+  <li><strong>Mortgage (k):</strong> For every additional $1,000 in mortgage balance, the percentage invested decreases by approximately <strong>0.054 percentage points</strong>, holding Salary and Debt constant. Larger housing obligations modestly suppress retirement contributions.</li>
+  <li><strong>Debt (k):</strong> For every additional $1,000 in other debt, the percentage invested decreases by approximately <strong>0.301 percentage points</strong>, holding Salary and Mortgage constant. With the largest per-unit effect, non-mortgage debt is the most significant financial barrier to retirement saving in this dataset.</li>
+</ul>
+
+<!-- ==================== SECTION 3 ==================== -->
+<h2 id="fit">3. Model Fit – R-Square and Standard Error</h2>
+<h3>R-Square</h3>
+<p>The final model yields an <strong>R-Square of 0.4531 (45.3%)</strong>, meaning the three predictors jointly explain approximately 45% of the variation in retirement investment rates. The Adjusted R-Square of <strong>44.5%</strong> confirms this is a genuine fit, not inflated by the number of predictors. The F-test (F&nbsp;=&nbsp;52.47, p&nbsp;=&nbsp;9.45E−25) confirms the model is highly statistically significant. In behavioral financial research, explaining 45% of variance from three financial variables alone represents a strong and meaningful result.</p>
+<h3>Standard Error and the Empirical Rule</h3>
+<p>The Standard Error of the regression is <strong>0.03366</strong>. Applying the <strong>empirical rule</strong>:</p>
+<ul>
+  <li>Approximately <strong>68%</strong> of predictions fall within <strong>±3.37 percentage points</strong> of the actual investment rate (±1 standard error).</li>
+  <li>Approximately <strong>95%</strong> of predictions fall within <strong>±6.73 percentage points</strong> of the actual rate (±2 standard errors).</li>
+</ul>
+<p>For context: if the model predicts a person invests 8.0%, we can be 68% confident the true value falls between 4.6% and 11.4%, and 95% confident it falls between 1.3% and 14.7%.</p>
+
+<!-- ==================== SECTION 4 ==================== -->
+<h2 id="corr">4. Correlation and Multicollinearity</h2>
+<table>
+  <thead><tr><th class="s">Variable</th><th class="s">Children</th><th class="s">Salary (k)</th><th class="s">Mortgage (k)</th><th class="s">Debt (k)</th></tr></thead>
+  <tbody>
+    <tr><td>Children</td>    <td>1.000</td> <td></td>      <td></td>      <td></td></tr>
+    <tr><td>Salary (k)</td>  <td>−0.248</td><td>1.000</td> <td></td>      <td></td></tr>
+    <tr><td>Mortgage (k)</td><td>0.319</td> <td>0.465</td> <td>1.000</td> <td></td></tr>
+    <tr><td>Debt (k)</td>    <td>0.442</td> <td>0.123</td> <td>0.432</td> <td>1.000</td></tr>
+  </tbody>
+</table>
+<p>The highest pairwise correlation among the three retained predictors is between Salary and Mortgage (r&nbsp;=&nbsp;0.465). Since no correlation exceeds the 0.70 threshold, there is <strong>no evidence of problematic multicollinearity</strong>. The predictors are sufficiently independent, and the regression coefficients can be interpreted with confidence.</p>
+
+<!-- ==================== SECTION 5 ==================== -->
+<h2 id="plots">5. Scatterplot Analysis</h2>
+<p>The four scatterplots below show the relationship between % Invested and each of the four independent variables across all 194 observations. Hover points to see exact values and click to pin the tooltip.</p>
+
+<div class="chart-controls">
+  <label class="toggle"><input id="toggleTrend" type="checkbox" checked>Trend line</label>
+  <label class="toggle"><input id="toggleR" type="checkbox" checked>Show r</label>
+  <span class="hint">Hover points to see values and click to pin the tooltip.</span>
+</div>
+
+<div class="chart-box" data-chart="c1">
+  <div class="chart-head">
+    <div class="chart-title">Salary (k) vs % Invested</div>
+  </div>
+  <canvas id="c1" width="760" height="310"></canvas>
+</div>
+<div class="interp">
+  <strong>Direction:</strong> Positive — as salary rises, the percentage invested tends to increase.&nbsp;
+  <strong>Form:</strong> Linear — the trend line captures a consistent upward slope from $10k to $135k.&nbsp;
+  <strong>Strength:</strong> Moderate — scatter around the trend is noticeable but the positive pattern is clearly defined, consistent with the highly significant coefficient (p&nbsp;=&nbsp;4.24E−19).
+</div>
+
+<div class="chart-box" data-chart="c2">
+  <div class="chart-head">
+    <div class="chart-title">Mortgage (k) vs % Invested</div>
+  </div>
+  <canvas id="c2" width="760" height="310"></canvas>
+</div>
+<div class="interp">
+  <strong>Direction:</strong> Negative — higher mortgage balances are associated with lower investment percentages.&nbsp;
+  <strong>Form:</strong> Linear — a gentle downward trend across the mortgage range ($0–$190k).&nbsp;
+  <strong>Strength:</strong> Weak-to-moderate — considerable scatter, though the relationship is statistically significant (p&nbsp;=&nbsp;2.70E−07).
+</div>
+
+<div class="chart-box" data-chart="c3">
+  <div class="chart-head">
+    <div class="chart-title">Debt (k) vs % Invested</div>
+  </div>
+  <canvas id="c3" width="760" height="310"></canvas>
+</div>
+<div class="interp">
+  <strong>Direction:</strong> Negative — as total other debt increases, the percentage invested decreases.&nbsp;
+  <strong>Form:</strong> Linear — a consistent downward slope across debt levels ($0–$24k).&nbsp;
+  <strong>Strength:</strong> Moderate — the negative pattern is well-defined. With a coefficient of −0.301 pp per $1k, Debt has the largest per-unit effect in the model (p&nbsp;=&nbsp;1.43E−07).
+</div>
+
+<div class="chart-box" data-chart="c4">
+  <div class="chart-head">
+    <div class="chart-title">Children vs % Invested</div>
+  </div>
+  <canvas id="c4" width="760" height="310"></canvas>
+</div>
+<div class="interp">
+  <strong>Direction:</strong> Negative — households with more children tend to invest a lower percentage.&nbsp;
+  <strong>Form:</strong> Discrete clusters — Children is integer-valued (0–4), so points form vertical bands rather than a smooth x-scale.&nbsp;
+  <strong>Strength:</strong> Moderate (r&nbsp;≈&nbsp;−0.411) in the scatterplot, but Children is not significant in the regression once Salary, Mortgage, and Debt are held constant (p&nbsp;=&nbsp;0.954), so it was excluded from the final model.
+</div>
+
+<!-- ==================== SECTION 6 ==================== -->
+<h2 id="conclusion">6. Conclusion</h2>
+<h3>Group Tendency</h3>
+<p>The data reveals a clear pattern: higher salary is positively associated with greater retirement investment, while both mortgage obligations and — most strongly — non-mortgage consumer debt suppress investment rates. Debt is the single most influential financial barrier to retirement saving in this sample. Number of children does not exert a statistically meaningful effect once financial variables are controlled.</p>
+<h3>Regression Success</h3>
+<p>The refined model is statistically successful. All three retained predictors are highly significant (p&nbsp;&lt;&nbsp;0.001), the model explains 45.3% of variation in retirement investment rates, and the F-statistic (52.47, p&nbsp;=&nbsp;9.45E−25) confirms overall model robustness. Removing Children improved the Adjusted R-Square from 44.2% to 44.5%.</p>
+<h3>Missing Variables</h3>
+<p>Two additional variables could improve the model: <strong>Age</strong> (individuals closer to retirement typically contribute more) and <strong>Employer Matching Rate</strong> (a well-documented incentive for higher contribution rates). Both could be gathered through an employee benefits or HR survey.</p>
+
+<hr class="rule2">
+<div class="footer">Team 27 &nbsp;·&nbsp; Managerial Decision Making &nbsp;·&nbsp; Case Study C09_04 &nbsp;·&nbsp; Revised Submission</div>
+
+<div class="backtop"><button type="button" id="backTopBtn">Top</button></div>
+<div id="tooltip" class="tooltip" hidden></div>
+
+<script>
+const UI = { showTrend: true, showR: true, pinned: {} };
+const CHARTS = {};
+
+function fmtPct(v){ return v.toFixed(1) + '%'; }
+function fmtX(xIdx, v){
+  if (xIdx === 0) return String(Math.round(v));
+  if (xIdx === 3) return v.toFixed(2);
+  return v.toFixed(2);
+}
+
+function getTooltip(){ return document.getElementById('tooltip'); }
+
+function showTip(x, y, html){
+  const tip = getTooltip();
+  tip.innerHTML = html;
+  tip.hidden = false;
+  const pad = 14;
+  const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+  const vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+  const rect = tip.getBoundingClientRect();
+  const left = Math.min(vw - rect.width - pad, x + pad);
+  const top = Math.min(vh - rect.height - pad, y + pad);
+  tip.style.left = Math.max(pad, left) + 'px';
+  tip.style.top = Math.max(pad, top) + 'px';
+}
+
+function hideTip(){
+  const tip = getTooltip();
+  tip.hidden = true;
+}
+
+// Dataset: [children, salary_k, mortgage_k, debt_k, invested_pct]
+// invested stored as percentage (e.g. 6.0 not 0.06) for chart readability
+const D=[
+[2,95.92,87.34,6.23,6.0],[3,99.85,105.32,15.24,9.9],[1,81.94,35.72,2.03,9.0],
+[2,70.37,78.61,13.45,8.4],[1,77.43,55.64,5.27,15.0],[4,55.09,130.02,11.26,0.0],
+[2,89.73,99.60,11.52,4.8],[2,58.33,85.32,10.63,2.9],[3,50.73,102.22,11.74,0.0],
+[3,65.76,114.05,19.38,9.5],[0,100.82,76.25,9.14,9.7],[2,48.31,39.84,3.26,3.6],
+[2,44.69,47.76,9.88,9.4],[2,76.12,35.65,9.37,8.4],[3,32.12,65.56,10.50,7.5],
+[2,110.95,120.71,16.97,15.0],[2,61.18,68.89,6.65,8.8],[2,100.29,104.54,19.48,3.9],
+[0,43.81,39.54,7.85,15.0],[1,73.32,75.80,5.98,6.8],[1,103.07,103.04,3.01,15.0],
+[3,71.96,67.28,12.80,4.7],[1,87.17,83.13,14.94,10.1],[2,71.70,59.92,6.93,13.9],
+[1,110.58,94.03,8.23,11.8],[3,86.93,103.45,13.60,14.0],[1,57.62,50.98,5.13,5.8],
+[1,54.42,54.85,10.59,0.0],[1,100.45,75.05,15.79,5.3],[2,39.68,72.59,15.81,4.5],
+[1,97.36,76.02,13.18,7.6],[3,53.05,76.39,16.87,0.0],[2,82.76,47.79,16.49,10.6],
+[2,53.78,100.47,18.74,0.0],[0,52.18,75.91,5.88,8.2],[3,58.24,96.63,14.22,11.4],
+[2,68.48,83.23,1.24,5.3],[3,98.06,124.96,11.63,7.2],[0,89.47,77.95,4.63,13.6],
+[2,128.23,143.48,20.62,5.7],[4,77.47,128.69,23.67,0.0],[2,85.39,94.01,4.05,10.4],
+[1,60.13,70.27,4.52,7.5],[3,90.09,114.13,8.39,7.5],[1,74.66,56.74,16.16,7.0],
+[1,90.97,101.05,3.31,8.2],[2,62.45,44.20,11.10,11.7],[3,89.76,137.03,17.12,0.0],
+[1,68.60,113.64,7.10,1.4],[2,75.04,92.51,13.10,4.4],[3,38.31,23.76,12.36,5.2],
+[3,72.33,69.20,10.21,12.6],[2,97.68,94.65,9.67,10.5],[3,49.81,71.86,8.90,5.7],
+[3,73.42,149.56,20.94,0.0],[3,63.03,85.95,3.53,12.0],[3,46.41,73.33,13.83,1.5],
+[2,51.28,51.24,9.25,4.2],[0,78.97,51.29,0.62,12.4],[2,36.27,64.38,7.46,1.5],
+[0,79.91,22.31,0.00,9.0],[1,36.37,20.58,8.51,4.4],[2,63.81,69.33,7.97,7.3],
+[3,64.11,124.48,7.82,8.7],[1,90.63,82.53,17.09,4.3],[2,83.21,94.29,4.39,4.7],
+[1,103.28,60.61,4.21,10.4],[2,71.02,80.63,13.85,8.4],[1,95.59,71.82,9.50,15.0],
+[2,98.95,53.41,5.84,15.0],[4,33.02,100.92,17.80,0.0],[3,71.33,66.79,16.70,8.5],
+[2,40.38,73.45,7.43,0.9],[2,73.02,112.63,14.08,6.3],[3,63.73,93.42,14.91,0.0],
+[1,96.50,99.33,12.19,10.6],[2,132.06,97.14,10.91,15.0],[1,70.16,93.19,12.43,2.9],
+[1,72.38,86.35,2.00,6.0],[3,45.20,99.30,6.30,0.0],[1,86.99,100.67,12.10,1.0],
+[3,44.62,96.89,9.85,3.6],[3,90.95,110.72,14.75,10.5],[1,77.16,75.78,4.40,9.4],
+[2,49.14,50.76,10.23,2.2],[2,62.80,102.24,7.03,0.0],[3,35.06,46.09,9.43,5.0],
+[2,75.61,45.47,4.40,10.6],[2,54.77,89.75,1.96,7.2],[1,56.07,72.03,3.84,5.2],
+[1,32.64,25.46,8.06,7.1],[0,124.36,73.88,7.30,15.0],[3,84.74,98.82,15.67,1.9],
+[2,110.01,106.89,13.47,10.3],[2,45.49,55.33,10.78,3.6],[1,121.76,120.80,8.04,14.1],
+[0,59.24,21.84,3.09,15.0],[2,64.66,21.25,0.00,14.3],[3,90.04,120.95,9.81,6.9],
+[2,47.74,64.37,8.80,8.3],[3,83.15,132.92,15.42,2.6],[3,78.63,107.14,9.16,5.0],
+[3,58.16,104.09,7.83,4.4],[1,82.37,82.45,12.34,15.0],[2,76.45,86.22,13.29,10.2],
+[3,43.06,53.57,11.41,0.0],[2,83.38,83.37,3.06,15.0],[3,105.51,99.53,17.21,4.7],
+[1,59.62,18.19,9.14,8.1],[2,58.50,47.29,7.37,10.1],[2,44.22,84.25,13.15,1.9],
+[2,76.67,97.52,11.32,0.0],[1,69.85,22.22,6.83,9.8],[3,89.37,133.68,21.31,3.3],
+[0,78.22,60.65,4.29,15.0],[3,58.94,126.35,10.62,7.2],[3,90.46,101.00,11.19,8.4],
+[1,66.97,49.83,4.05,11.3],[3,73.78,36.36,16.42,7.6],[1,88.91,52.42,5.68,7.2],
+[2,73.10,90.03,7.22,9.4],[2,35.00,13.54,9.90,10.9],[3,46.84,49.49,16.11,0.0],
+[2,102.96,98.59,9.97,4.8],[3,38.32,109.31,3.25,7.2],[4,25.15,55.61,11.90,6.6],
+[1,52.46,37.82,2.45,7.5],[1,65.85,76.89,13.18,7.0],[2,33.14,97.84,11.33,0.3],
+[2,114.81,106.68,11.47,10.7],[2,48.30,56.65,8.65,5.2],[2,46.96,15.44,5.00,3.5],
+[4,60.24,59.51,10.78,12.5],[1,87.58,95.19,1.74,12.3],[3,77.08,89.11,13.18,1.1],
+[2,69.02,98.46,9.29,5.4],[2,103.88,86.07,3.87,15.0],[1,53.31,51.48,7.35,8.5],
+[2,91.27,118.43,3.79,10.8],[2,36.97,38.72,4.86,3.9],[2,25.61,36.93,7.24,6.6],
+[1,70.86,96.66,12.97,2.7],[1,73.05,89.21,2.91,9.1],[1,82.60,125.18,9.84,2.8],
+[2,45.58,63.09,7.35,7.3],[2,31.36,39.56,1.91,3.4],[1,111.88,97.30,15.07,14.8],
+[1,77.89,93.98,5.64,7.8],[2,50.35,53.71,10.68,2.3],[2,55.33,78.08,0.20,13.7],
+[4,36.41,69.47,13.14,3.2],[2,79.87,85.44,8.03,7.8],[0,106.56,77.63,8.48,14.4],
+[2,109.18,106.57,14.83,3.0],[3,85.93,47.86,6.52,7.9],[3,82.06,68.33,6.15,10.3],
+[3,77.04,71.31,11.48,0.0],[1,93.64,94.13,10.23,8.2],[1,76.04,51.79,7.51,7.6],
+[2,52.53,103.96,10.50,8.2],[2,59.95,78.98,13.67,3.9],[3,66.38,99.63,11.06,7.2],
+[3,103.62,145.26,18.86,1.9],[3,53.11,94.68,11.73,7.1],[4,89.61,185.46,19.87,0.0],
+[2,86.12,92.17,2.06,15.0],[2,47.74,68.39,4.98,3.6],[3,49.24,78.22,12.68,0.0],
+[3,59.27,76.94,12.14,10.9],[1,79.05,72.91,14.40,8.3],[0,79.74,54.71,3.09,10.3],
+[3,16.65,53.53,16.21,0.0],[1,59.25,13.59,0.00,15.0],[2,58.14,46.00,7.19,10.1],
+[1,91.97,88.71,6.59,4.9],[3,73.15,116.17,14.82,0.0],[2,84.99,66.78,11.32,11.0],
+[3,79.90,106.84,15.72,4.3],[2,101.76,74.26,15.23,10.2],[1,53.50,74.58,12.19,3.0],
+[1,75.33,78.80,10.33,12.0],[3,32.01,55.31,6.47,3.5],[3,78.23,77.72,15.57,3.4],
+[3,50.70,89.49,7.58,6.3],[3,10.77,35.16,12.59,0.0],[3,64.67,116.99,11.86,0.8],
+[2,31.64,63.62,11.89,10.5],[2,83.17,87.79,6.81,14.8],[2,104.64,62.03,3.72,15.0],
+[2,79.91,108.59,10.42,7.7],[1,71.87,71.57,8.04,9.0],[1,82.80,92.23,14.59,8.1],
+[2,37.31,5.07,7.72,10.3],[2,125.83,116.96,15.51,10.4]
+];
+// cols: 0=children, 1=salary, 2=mortgage, 3=debt, 4=invested%
+
+// ── OLS helper ──────────────────────────────────────────────────────────────
+function ols(xs, ys) {
+  const n = xs.length;
+  const mx = xs.reduce((a, b) => a + b, 0) / n;
+  const my = ys.reduce((a, b) => a + b, 0) / n;
+  const ssxy = xs.reduce((a, v, i) => a + (v - mx) * (ys[i] - my), 0);
+  const ssx  = xs.reduce((a, v)    => a + (v - mx) ** 2, 0);
+  const ssy  = ys.reduce((a, v)    => a + (v - my) ** 2, 0);
+  const slope = ssxy / ssx;
+  const intercept = my - slope * mx;
+  const r = ssxy / Math.sqrt(ssx * ssy);
+  return { slope, intercept, r };
+}
+
+// ── Pure Canvas chart renderer (no external libraries) ──────────────────────
+function makeChart(canvasId, xIdx, xLabel, xMin, xMax, xStep, title) {
+  const canvas = document.getElementById(canvasId);
+  const W = canvas.width;
+  const H = canvas.height;
+  const ctx = canvas.getContext('2d');
+
+  // Layout margins
+  const ml = 68, mr = 24, mt = 48, mb = 54;
+  const pw = W - ml - mr;   // plot width
+  const ph = H - mt - mb;   // plot height
+  const yMin = 0, yMax = 16;
+
+  // Scale helpers
+  const sx = x => ml + (x - xMin) / (xMax - xMin) * pw;
+  const sy = y => mt + ph - (y - yMin) / (yMax - yMin) * ph;
+
+  // Compute OLS
+  const xs = D.map(r => r[xIdx]);
+  const ys = D.map(r => r[4]);
+  const { slope, intercept, r } = ols(xs, ys);
+
+  const points = [];
+
+  function render(highlightIdx) {
+    points.length = 0;
+
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0, 0, W, H);
+
+    ctx.fillStyle = '#f8fafd';
+    ctx.fillRect(ml, mt, pw, ph);
+
+    ctx.strokeStyle = 'rgba(200,215,230,0.8)';
+    ctx.lineWidth = 1;
+    for (let v = yMin; v <= yMax; v += 4) {
+      const yp = sy(v);
+      ctx.beginPath();
+      ctx.moveTo(ml, yp);
+      ctx.lineTo(ml + pw, yp);
+      ctx.stroke();
+    }
+
+    for (let v = xMin; v <= xMax; v += xStep) {
+      const xp = sx(v);
+      ctx.beginPath();
+      ctx.moveTo(xp, mt);
+      ctx.lineTo(xp, mt + ph);
+      ctx.stroke();
+    }
+
+    ctx.strokeStyle = '#777';
+    ctx.lineWidth = 1.6;
+    ctx.beginPath();
+    ctx.moveTo(ml, mt);
+    ctx.lineTo(ml, mt + ph);
+    ctx.lineTo(ml + pw, mt + ph);
+    ctx.stroke();
+
+    ctx.fillStyle = '#444';
+    ctx.font = '11px Arial, sans-serif';
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'middle';
+    for (let v = yMin; v <= yMax; v += 4) {
+      ctx.fillText(v + '%', ml - 8, sy(v));
+    }
+
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    for (let v = xMin; v <= xMax; v += xStep) {
+      const xp = sx(v);
+      ctx.fillText(xIdx === 0 ? Math.round(v) : v, xp, mt + ph + 7);
+      ctx.strokeStyle = '#777';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(xp, mt + ph);
+      ctx.lineTo(xp, mt + ph + 5);
+      ctx.stroke();
+    }
+
+    ctx.fillStyle = '#333';
+    ctx.font = 'bold 12px Calibri, Arial, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'bottom';
+    ctx.fillText(xLabel, ml + pw / 2, H - 4);
+
+    ctx.save();
+    ctx.translate(13, mt + ph / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.font = 'bold 12px Calibri, Arial, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('% of Income Invested', 0, 0);
+    ctx.restore();
+
+    ctx.fillStyle = '#1F3864';
+    ctx.font = 'bold 14px Calibri, Arial, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    ctx.fillText(title, W / 2, 10);
+
+    D.forEach((row, i) => {
+      const xRaw = row[xIdx];
+      let xv = xRaw;
+      if (xIdx === 0) xv += ((i * 17 + 3) % 9 - 4) * 0.055;
+      const px = sx(xv);
+      const py = sy(row[4]);
+      points.push({ i, px, py, xRaw, y: row[4], row });
+      if (px >= ml - 6 && px <= ml + pw + 6 && py >= mt - 6 && py <= mt + ph + 6) {
+        ctx.beginPath();
+        ctx.arc(px, py, 4.5, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(46,117,182,0.38)';
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(26,77,143,0.65)';
+        ctx.lineWidth = 0.9;
+        ctx.stroke();
+      }
+    });
+
+    if (typeof highlightIdx === 'number' && highlightIdx >= 0) {
+      const p = points[highlightIdx];
+      if (p) {
+        ctx.beginPath();
+        ctx.arc(p.px, p.py, 8, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(255,193,7,0.95)';
+        ctx.lineWidth = 3;
+        ctx.stroke();
+      }
+    }
+
+    if (UI.showTrend) {
+      const tx1 = xMin, ty1 = Math.max(yMin, Math.min(yMax, intercept + slope * xMin));
+      const tx2 = xMax, ty2 = Math.max(yMin, Math.min(yMax, intercept + slope * xMax));
+      ctx.save();
+      ctx.beginPath();
+      ctx.rect(ml, mt, pw, ph);
+      ctx.clip();
+      ctx.beginPath();
+      ctx.moveTo(sx(tx1), sy(ty1));
+      ctx.lineTo(sx(tx2), sy(ty2));
+      ctx.strokeStyle = 'rgba(192,0,0,0.90)';
+      ctx.lineWidth = 2.5;
+      ctx.setLineDash([10, 5]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.restore();
+    }
+
+    const lx = ml + pw - 195;
+    const ly = mt + 10;
+    ctx.fillStyle = 'rgba(255,255,255,0.92)';
+    ctx.strokeStyle = '#cfdbe8';
+    ctx.lineWidth = 1;
+    ctx.fillRect(lx - 6, ly - 5, 200, UI.showR ? 52 : 30);
+    ctx.strokeRect(lx - 6, ly - 5, 200, UI.showR ? 52 : 30);
+
+    ctx.beginPath();
+    ctx.arc(lx + 7, ly + 10, 5, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(46,117,182,0.38)';
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(26,77,143,0.65)';
+    ctx.lineWidth = 0.9;
+    ctx.stroke();
+    ctx.fillStyle = '#333';
+    ctx.font = '11px Arial, sans-serif';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('Observation  (n = 194)', lx + 18, ly + 10);
+
+    if (UI.showR) {
+      ctx.beginPath();
+      ctx.moveTo(lx + 2, ly + 33);
+      ctx.lineTo(lx + 22, ly + 33);
+      ctx.strokeStyle = 'rgba(192,0,0,0.90)';
+      ctx.lineWidth = 2.5;
+      ctx.setLineDash([7, 4]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      const rSign = r >= 0 ? '+' : '';
+      ctx.fillStyle = '#333';
+      ctx.fillText('Linear trend   r = ' + rSign + r.toFixed(3), lx + 27, ly + 33);
+    }
+  }
+
+  render(-1);
+
+  const state = {
+    id: canvasId,
+    xIdx,
+    xLabel,
+    title,
+    render,
+    points,
+  };
+  CHARTS[canvasId] = state;
+
+  function nearestPoint(x, y) {
+    let best = -1;
+    let bestD = 999999;
+    for (let j = 0; j < points.length; j++) {
+      const p = points[j];
+      const dx = p.px - x;
+      const dy = p.py - y;
+      const d = dx * dx + dy * dy;
+      if (d < bestD) {
+        bestD = d;
+        best = j;
+      }
+    }
+    return bestD <= 140 ? best : -1;
+  }
+
+  canvas.addEventListener('mousemove', e => {
+    const rect = canvas.getBoundingClientRect();
+    const x = (e.clientX - rect.left) * (canvas.width / rect.width);
+    const y = (e.clientY - rect.top) * (canvas.height / rect.height);
+    const pinned = UI.pinned[canvasId];
+    const idx = pinned != null ? pinned : nearestPoint(x, y);
+    if (idx >= 0) {
+      state.render(idx);
+      const p = points[idx];
+      const xText = fmtX(xIdx, p.xRaw);
+      const yText = fmtPct(p.y);
+      const name = xLabel.replace(/\s*\(thousands \$\)/, ' (k)');
+      const html = '<div style=\"font-weight:900;margin-bottom:4px\">' + title + '</div>' +
+        '<div><span style=\"opacity:.80\">' + name + ':</span> ' + xText + '</div>' +
+        '<div><span style=\"opacity:.80\">% Invested:</span> ' + yText + '</div>' +
+        '<div style=\"opacity:.75;margin-top:4px\">Observation #' + (p.i + 1) + '</div>';
+      showTip(e.clientX, e.clientY, html);
+    } else {
+      if (pinned == null) {
+        state.render(-1);
+        hideTip();
+      }
+    }
+  });
+
+  canvas.addEventListener('mouseleave', () => {
+    const pinned = UI.pinned[canvasId];
+    if (pinned == null) {
+      state.render(-1);
+      hideTip();
+    }
+  });
+
+  canvas.addEventListener('click', e => {
+    const rect = canvas.getBoundingClientRect();
+    const x = (e.clientX - rect.left) * (canvas.width / rect.width);
+    const y = (e.clientY - rect.top) * (canvas.height / rect.height);
+    const hit = nearestPoint(x, y);
+    if (hit >= 0) {
+      UI.pinned[canvasId] = UI.pinned[canvasId] === hit ? null : hit;
+    } else {
+      UI.pinned[canvasId] = null;
+      hideTip();
+      state.render(-1);
+    }
+  });
+}
+
+// ── Draw all four charts ─────────────────────────────────────────────────────
+makeChart('c1', 1, 'Salary (thousands $)',   10,   140,  20, 'Scatterplot 1 – Salary (k) vs. % Invested');
+makeChart('c2', 2, 'Mortgage (thousands $)',  0,   200,  50, 'Scatterplot 2 – Mortgage (k) vs. % Invested');
+makeChart('c3', 3, 'Total Other Debt ($k)',   0,    25,   5, 'Scatterplot 3 – Debt (k) vs. % Invested');
+makeChart('c4', 0, 'Number of Children',     -0.5,  4.5,  1, 'Scatterplot 4 – Children vs. % Invested');
+
+function setTab(targetId, groupEl){
+  const btns = Array.from(groupEl.querySelectorAll('.tab-btn'));
+  btns.forEach(b => b.classList.toggle('active', b.dataset.target === targetId));
+  const panels = Array.from(document.querySelectorAll('.tab-panel'));
+  panels.forEach(p => p.classList.toggle('active', p.id === targetId));
+}
+
+document.getElementById('toggleTrend').addEventListener('change', e => {
+  UI.showTrend = e.target.checked;
+  Object.values(CHARTS).forEach(ch => ch.render(UI.pinned[ch.id] ?? -1));
+});
+document.getElementById('toggleR').addEventListener('change', e => {
+  UI.showR = e.target.checked;
+  Object.values(CHARTS).forEach(ch => ch.render(UI.pinned[ch.id] ?? -1));
+});
+
+ 
+
+document.querySelectorAll('.tabs[data-tabs=\"reg\"]').forEach(group => {
+  group.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => setTab(btn.dataset.target, group));
+  });
+});
+
+document.getElementById('backTopBtn').addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+</script>
+</body>
+</html>

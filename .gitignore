@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+Thumbs.db
+*.tmp
+~$*
+book.pdf
+*Rubric*
+*Quiz*
+*Albright*
+*.epub
+*.pptx
+feedback*.md
+*_backup*
+*.zip
