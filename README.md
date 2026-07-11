@@ -1,15 +1,33 @@
-# MDM Coursework
+# MDM Coursework Portfolio
 
-**Managerial Decision Making** — Business Analytics coursework, Lamar University (MS Management Information Systems).
+**Managerial Decision Making (MDM)** — Business Analytics coursework  
+Lamar University · MS Management Information Systems
 
-**Author:** [Shakila Azad](https://github.com/sazad-here)  
+**Author:** [Shakila Azad](https://github.com/sazad-here) · [@sazad-here](https://github.com/sazad-here)  
 **LinkedIn:** [linkedin.com/in/shakila-azad2005](https://www.linkedin.com/in/shakila-azad2005/)  
+**GitHub repo:** [github.com/sazad-here/mdm-coursework](https://github.com/sazad-here/mdm-coursework)  
 **Course:** MDM (Managerial Decision Making)  
 **Textbook:** *Business Analytics: Data Analysis and Decision Making* (Albright et al., 8e)
 
-Curated assignments and a team case study. Each folder includes **datasets**, **step-by-step guidance**, and **embedded charts/screenshots** so students and visitors can follow the work.
+## Project summary (LinkedIn / portfolio)
+
+Curated Managerial Decision Making assignments: regression, descriptive statistics, Solver optimization, decision analysis, and a retirement-investment case study. Includes datasets, visualizations, step-by-step guides, and Python automation for Excel. Built for MS MIS coursework so students and professionals can follow the analysis end to end.
+
+**Skills demonstrated:** Excel · Data Analysis ToolPak · Excel Solver · Regression · Descriptive statistics · Pivot tables / COUNTIFS · Linear programming · Decision analysis · Python (pandas, openpyxl, xlsxwriter)
 
 Full rubrics, textbook PDFs, and quizzes are excluded.
+
+## Start here (if you came from LinkedIn)
+
+| Want to see… | Go to |
+|--------------|--------|
+| Best showcase (case study + charts) | [case-study-retirement-investment](case-study-retirement-investment/) · open [`index.html`](case-study-retirement-investment/index.html) |
+| Python + Excel automation | [04-variable-relationships](04-variable-relationships/) |
+| Charts & histograms | [03-descriptive-statistics](03-descriptive-statistics/) |
+| Solver / optimization | [05-linear-programming](05-linear-programming/) · [06-optimization-solver](06-optimization-solver/) |
+| Full assignment list | See table below |
+
+Connect on LinkedIn: [Shakila Azad](https://www.linkedin.com/in/shakila-azad2005/)
 
 ## How to use this repo (students & visitors)
 
