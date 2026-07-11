@@ -2,11 +2,21 @@
 
 **Chapter 7** — Decision analysis under uncertainty (Albright 8e).
 
-## Dataset
+## How to follow this assignment
 
-| File | Problem |
-|------|---------|
-| `Assignment 7 Problem 10.xlsx` | Ch. 7, Problem 10 — completed decision model |
+1. Open `data/Assignment 7 Problem 10.xlsx`.
+2. Identify **decision alternatives**, **states of nature**, and **payoffs**.
+3. Compute **expected value** (and related criteria your instructor requires).
+4. Document the key equation / decision rule.
+5. Optionally build a decision tree for the same payoffs.
+
+## Dataset (`data/`)
+
+| File | Use |
+|------|-----|
+| `Assignment 7 Problem 10.xlsx` | Completed Problem 10 decision model (payoffs + Excel setup) |
+
+A copy also sits at the folder root for quick access.
 
 ## Visualizations
 
@@ -14,8 +24,8 @@
 
 ![Decision analysis equation for Problem 10](eqn.png)
 
-Open `Assignment 7 Problem 10.xlsx` for the full payoff table, decision tree structure, and expected-value calculations.
+**What to notice:** The equation links payoffs and probabilities (or expected-value weights) so you can choose the best alternative under uncertainty.
 
 ## Skills
 
-Decision trees, expected value, sensitivity analysis
+Decision trees, expected value, payoff tables, sensitivity to probabilities
