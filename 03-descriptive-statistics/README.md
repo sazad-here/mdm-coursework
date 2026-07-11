@@ -1,23 +1,25 @@
 # Descriptive Statistics
 
-**Chapters 1–2** — Describing distributions and categorical data.
+**Chapters 1–2** — Describing distributions and categorical data (Albright 8e).
 
-## Problems
+## Textbook datasets (`data/`)
 
-| Problem | Dataset | Focus |
-|---------|---------|--------|
-| 3 | P02_03 | Categorical variables, column charts, recoding |
-| 6 | P02_06 | Frequency distribution, histogram, mean vs median |
-| 20 | P02_20 | Time series and year-over-year changes |
-| 36 | Supermarket_Transactions | Large-scale transaction analysis |
+| Problem | Dataset | Textbook reference |
+|---------|---------|-------------------|
+| 3 | `P02_03.xlsx` | Ch. 2, p. 50 |
+| 6 | `P02_06.xlsx` | Ch. 2, p. 63 |
+| 20 | `P02_20.xlsx` | Ch. 2, p. 70 |
+| 36 | `Supermarket_Transactions.xlsx` | Ch. 2, p. 78 |
+
+Use these files to recreate histograms, frequency tables, column charts, and recoding steps.
 
 ## Script
 
-`solve_prob6.py` reads the data files in `data/` and writes a formatted `Assignment_3_Answers.xlsx` using **pandas** and **xlsxwriter**.
+`solve_prob6.py` reads the datasets in `data/` and writes a formatted `Assignment_3_Answers.xlsx` using **pandas** and **xlsxwriter**.
 
-## Files
+## Sample work
 
-- `data/` — Source datasets and sample answers workbook
+- `sample-work/Problem_3_Answers.xlsx` — Example formatted submission
 - `screenshots/` — Column charts, histograms, time-series outputs
 
 ## Skills

@@ -1,19 +1,24 @@
 # Optimization with Solver
 
-**Chapter 13** — Advanced Solver applications.
+**Chapter 13** — Advanced Solver applications (Albright 8e).
 
-## Problems
+## Textbook datasets (`data/`)
 
-| Problem | Topic |
-|---------|--------|
-| 1 | Worker scheduling |
-| 13 | Worker transportation |
-| 37 | Investing |
+| Problem | Topic | Dataset |
+|---------|--------|---------|
+| 1 | Worker scheduling | `Worker Scheduling.xlsx` |
+| 13 | Worker transportation | `worker Transportation.xlsx`, `Transportation.xlsx` |
+| 37 | Investing | `Investing.xlsx` |
 
-## Files
+Use these as Solver input templates. Build the model, then compare your optimal solution to the sample workbooks.
 
-- `workbooks/` — Input templates and solution workbooks
-- `screenshots/` — Optimal solutions for scheduling, transportation, and investing
+## Sample submissions (`workbooks/`)
+
+Includes completed models such as `Worker Scheduling Solution.xlsx`, `Transportation Solution.xlsx`, and `09-Investing Solutions.xlsx`.
+
+## Screenshots
+
+`screenshots/` — Optimal solutions for scheduling, transportation, and investing.
 
 ## Skills
 

@@ -1,15 +1,17 @@
 # Decision Analysis
 
-**Chapter 7** — Decision analysis under uncertainty.
+**Chapter 7** — Decision analysis under uncertainty (Albright 8e).
 
-## Work completed
+## Dataset
 
-- Problem 10 decision model in Excel
-- Equation and decision tree / payoff structure documentation
+| File | Problem |
+|------|---------|
+| `Assignment 7 Problem 10.xlsx` | Ch. 7, Problem 10 — completed decision model |
+
+The workbook includes the payoff structure and Excel model for the assigned decision-analysis problem. Open it to see how inputs, outcomes, and expected value are organized.
 
 ## Files
 
-- `Assignment 7 Problem 10.xlsx` — Completed model
 - `eqn.png` — Key equation reference
 
 ## Skills

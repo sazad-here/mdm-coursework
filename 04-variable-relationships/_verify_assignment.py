@@ -7,6 +7,7 @@ from pathlib import Path
 import openpyxl
 
 BASE = Path(__file__).resolve().parent
+DATA = BASE / "data"
 ok, fail = [], []
 
 
@@ -15,7 +16,7 @@ def check(cond: bool, msg: str):
 
 
 # --- P03_02 ---
-wb = openpyxl.load_workbook(BASE / "P03_02.xlsx", data_only=False)
+wb = openpyxl.load_workbook(DATA / "P03_02.xlsx", data_only=False)
 check("Data" in wb.sheetnames, "P03_02: sheet Data exists")
 ws = wb["Data"]
 check(str(ws["H1"].value) == "Salary_Group", "P03_02: Salary_Group in H1")
@@ -39,7 +40,7 @@ p2a = wb["P2a_Gender"]
 has_chart = len(getattr(p2a, "_charts", [])) >= 1
 check(has_chart, "P03_02: P2a_Gender has embedded chart")
 
-wb_d = openpyxl.load_workbook(BASE / "P03_02.xlsx", data_only=True)
+wb_d = openpyxl.load_workbook(DATA / "P03_02.xlsx", data_only=True)
 d = wb_d["Data"]
 male_total = female_total = 0
 male_counts = [0] * 5
@@ -71,7 +72,7 @@ check(
 )
 
 # --- P03_08 ---
-wb8 = openpyxl.load_workbook(BASE / "P03_08.xlsx", data_only=False)
+wb8 = openpyxl.load_workbook(DATA / "P03_08.xlsx", data_only=False)
 check(wb8["Data"]["A1"].value == "Employee", "P03_08: Data A1 = Employee (not corrupted)")
 check("P8_Summary" in wb8.sheetnames, "P03_08: P8_Summary exists")
 check("P21_Corr" not in wb8.sheetnames, "P03_08: no stray P21_Corr")
@@ -85,7 +86,7 @@ check("MEDIAN(" in med_formula and "FILTER(" in med_formula, "P03_08: P8_Summary
 check("STDEV.S(" in str(wb8["P8_Summary"]["D4"].value or ""), "P03_08: P8_Summary stdev uses STDEV.S/FILTER")
 
 # --- P03_21 ---
-wb21 = openpyxl.load_workbook(BASE / "P03_21.xlsx", data_only=False)
+wb21 = openpyxl.load_workbook(DATA / "P03_21.xlsx", data_only=False)
 check("P21_Answers" in wb21.sheetnames, "P03_21: P21_Answers exists (interactive regression)")
 check("P21_Corr" in wb21.sheetnames and "P21_Charts" in wb21.sheetnames, "P03_21: solution sheets exist")
 ans = wb21["P21_Answers"]

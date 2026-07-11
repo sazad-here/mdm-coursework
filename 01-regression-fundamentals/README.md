@@ -1,18 +1,23 @@
 # Regression Fundamentals
 
-**Chapter 9** — Estimating relationships with regression.
+**Chapter 9** — Estimating relationships with regression (Albright 8e).
 
-## Work completed
+## Textbook datasets (`data/`)
 
-- Simple and multiple regression in Excel
-- Scatterplots with trendlines, R², and regression equations
-- Interpretation of slope coefficients and model fit
+| File | Typical use |
+|------|-------------|
+| `Bank Salaries.xlsx` | Multiple regression — salary drivers |
+| `Cost of Power.xlsx` | Simple regression — cost vs units |
+| `Drugstore Sales (Data only).xlsx` | Sales regression |
+| `Overhead Costs (Data only).xlsx` | Overhead cost modeling |
 
-## Files
+Download these to practice the same Excel models used in Ch. 9.
 
-- `Bank Salaries Updated.xlsx` — Multiple regression on salary drivers
-- `Drugstore Sales Updated.xlsx` — Regression results workbook
-- `screenshots/` — Sample regression scatterplot output
+## Sample submissions
+
+- `Bank Salaries Updated.xlsx` — Completed multiple regression workbook
+- `Drugstore Sales Updated.xlsx` — Completed regression results
+- `screenshots/` — Scatterplot and regression output examples
 
 ## Skills
 

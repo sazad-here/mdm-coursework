@@ -1,19 +1,25 @@
 # Linear Programming
 
-**Chapter 12** — Optimization with Excel Solver.
+**Chapter 12** — Optimization with Excel Solver (Albright 8e).
 
-## Problems
+## Textbook datasets (`data/`)
 
-| Problem | Topic | Workbook |
-|---------|--------|----------|
-| 2 | Product mix 1 | Production Mix 1.xls |
-| 11 | Product mix 2 | Production Mix 2.xls |
-| 19 | Production planning | Production Planning Problem19.xls |
+| Problem | Topic | Dataset |
+|---------|--------|---------|
+| 2 | Product mix 1 | `Production Mix 1.xls` |
+| 11 | Product mix 2 | `Production Mix 2.xls` |
+| 19 | Production planning | `Production Planning Problem19.xls` |
+| — | Extra template | `Production Planning.xls` |
 
-## Files
+Open these in Excel, set up decision variables and constraints, then run Solver.
 
-- `workbooks/` — Solver models and solutions
-- `screenshots/` — Solver results and sensitivity outputs
+## Sample submissions (`workbooks/`)
+
+Completed Solver models matching the assignment problems.
+
+## Screenshots
+
+`screenshots/` — Solver results and sensitivity outputs.
 
 ## Skills
 

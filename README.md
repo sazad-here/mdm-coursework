@@ -7,7 +7,9 @@
 **Course:** MDM (Managerial Decision Making)  
 **Textbook:** *Business Analytics: Data Analysis and Decision Making* (Albright et al., 8e)
 
-Curated assignments and team case study from the MDM course. Includes Excel analysis, Solver models, and Python automation. Full rubrics, textbook PDFs, and quizzes are excluded.
+Curated assignments and team case study from the MDM course. Each folder includes **textbook datasets** (`data/`) so students using Albright 8e can download the same files and practice alongside the sample work.
+
+Full rubrics, textbook PDFs, and quizzes are excluded.
 
 ## Assignments
 
@@ -21,6 +23,17 @@ Curated assignments and team case study from the MDM course. Includes Excel anal
 | [06-optimization-solver](06-optimization-solver/) | Solver optimization | Excel Solver |
 | [07-decision-analysis](07-decision-analysis/) | Decision analysis | Excel |
 | [case-study-retirement-investment](case-study-retirement-investment/) | Case study C09_04 | Excel, HTML |
+
+## Datasets by assignment
+
+| Folder | Datasets in `data/` |
+|--------|---------------------|
+| 01-regression-fundamentals | Bank Salaries, Cost of Power, Drugstore Sales, Overhead Costs |
+| 03-descriptive-statistics | P02_03, P02_06, P02_20, Supermarket_Transactions |
+| 04-variable-relationships | P03_02, P03_08, P03_21 |
+| 05-linear-programming | Production Mix 1 & 2, Production Planning |
+| 06-optimization-solver | Worker Scheduling, Transportation, Investing |
+| case-study-retirement-investment | C09_04 |
 
 ## Highlights
 

@@ -13,6 +13,7 @@ import openpyxl
 import win32com.client as win32
 
 BASE = Path(__file__).resolve().parent
+DATA = BASE / "data"
 
 OPINIONS = [
     "Strongly disagree",
@@ -304,7 +305,7 @@ def _add_sheet_hyperlink(ws, cell: str, sub_address: str, text: str) -> None:
 
 
 def solve_p03_02(excel) -> None:
-    path = BASE / "P03_02.xlsx"
+    path = DATA / "P03_02.xlsx"
     wb = excel.Workbooks.Open(str(path))
     try:
         last = 400
@@ -645,7 +646,7 @@ def solve_p03_02(excel) -> None:
 
 
 def solve_p03_08(excel) -> None:
-    path = BASE / "P03_08.xlsx"
+    path = DATA / "P03_08.xlsx"
     wb = excel.Workbooks.Open(str(path))
     try:
         _del_sheet_if_exists(wb, "P8_Summary")
@@ -915,7 +916,7 @@ def _p21_rank_predictors(xlsx_path: Path):
 
 
 def solve_p03_21(excel) -> None:
-    path = BASE / "P03_21.xlsx"
+    path = DATA / "P03_21.xlsx"
     last_row, top3, best, pnames, pcols, _cors = _p21_rank_predictors(path)
 
     wb = excel.Workbooks.Open(str(path))
